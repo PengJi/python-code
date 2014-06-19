@@ -1,4 +1,3 @@
-#函数
 def f1():
     print 1
 f1()
@@ -8,7 +7,7 @@ def f2(a):
 f2(1)
 f2("sdafa")
 
-def f3(a = 1,b=2,c=3):#默认参数
+def f3(a = 1,b=2,c=3):
     print 'a=',a
     print 'b=',b
     print 'c=',c
@@ -20,12 +19,12 @@ f3(1)
 f3(a=1,b=3,c=4)
 print f3(a=2,c=3)
 
-#多个变量接收多个值，分别赋值
+
 c,d = f3(b=4,c=9)
 print c
 print d
 
-#赋值到一个参数，返回元组
+
 d = f3(b=4,c=9)
 print d
 
