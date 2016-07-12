@@ -3,16 +3,12 @@ import sys
 import urllib
 from urlparse import urlparse
 
-#reload(sys)
-#sys.setdefaultencoding('utf8')
-#print sys.getdefaultencoding()
-
 path = "/home/hadoop/python_prac/file/datatest"
 lstdir = os.listdir(path)
 #print lstdir
 #['2012-06-09', '2012-05-10']
 
-# handle all files in a dirctory
+# handle all files in a dirctory,a file stands for a user
 for i,dire in enumerate(lstdir):
 	lstfile = os.listdir(path + '/' + dire)
 	#print lstfile
@@ -20,7 +16,7 @@ for i,dire in enumerate(lstdir):
 	#['A809AEDEC0625CF63861593F844E3F49_2012-05-10_07-44-23.txt', 'A86C89F9A5C7C0970092D9179FADDC5F_2012-05-10_09-26-23.txt']
 	
 	# one file/per day
-	fileWriteObj = open(str(lstdir[i]), 'a')
+	fileWriteObj = open('./result' + '/' + str(lstdir[i]), 'a')
 
 	# handle one file
 	for files in lstfile:
@@ -41,6 +37,7 @@ for i,dire in enumerate(lstdir):
 		fileLineText = fileReadObj.readline()
 
 		# the other lines
+		filelst = []
 		while ('' != fileLineText):
 			string = fileLineText
 			#print string
@@ -69,16 +66,31 @@ for i,dire in enumerate(lstdir):
 							url = urltup[2][0:inde+4]
 						# (2)that is not a true URL
 						else:
-							url = "tst"
+							url = "none"
 
 			ls = string.split('[=]')
-			inputStr = userlst[0] + "\t" + ls[0] + "\t"  + ls[1] + "\t"  + url  + "\n"
-			fileWriteObj.write(inputStr)
+			#inputStr = userlst[0] + "\t" + ls[0] + "\t"  + ls[1] + "\t"  + url  + "\n"
+			tmplst = [userlst[0],ls[0].split('<=>')[1],ls[1].split('<=>')[1],url]
+			filelst.append(tmplst)
+			#fileWriteObj.write(inputStr)
 			fileLineText = fileReadObj.readline()    
+			# end of the other lines
 
 		fileReadObj.close()
+		# calcuate the period
+		num = len(filelst)
+		for j,perLine in enumerate(filelst):
+			if j == num - 1:
+				break
+			perLine[1] = str(int(filelst[j+1][1]) - int(perLine[1]))
+			li = " ".join(perLine) + "\n"
+			fileWriteObj.write(li)
+		filelst[num-1][1] = str(int(lastTime) - int(filelst[num-1][1]))
+		li = " ".join(filelst[num-1]) + '\n'
+		fileWriteObj.write(li)
 
 	fileWriteObj.close()
 
-
+#print filelst
 print "Done" 
+
