@@ -4,8 +4,8 @@ import urllib
 from urlparse import urlparse
 
 #path = "/home/hadoop/python_prac/file/datatest"
-#path = "/data/hive_homework_data/behavior/part1"
-path = "/data/hive_homework_data/behavior/part2"
+path = "/data/hive_homework_data/behavior/part1"
+#path = "/data/hive_homework_data/behavior/part2"
 lstdir = os.listdir(path)
 #print lstdir
 #['2012-06-09', '2012-05-10']
@@ -18,7 +18,7 @@ for i,dire in enumerate(lstdir):
 	#['A809AEDEC0625CF63861593F844E3F49_2012-05-10_07-44-23.txt', 'A86C89F9A5C7C0970092D9179FADDC5F_2012-05-10_09-26-23.txt']
 	
 	# one file/per day
-	fileWriteObj = open('./result' + '/' + str(lstdir[i]), 'a')
+	fileWriteObj = open('/data/result' + '/' + str(lstdir[i]), 'a')
 
 	# handle one file
 	for files in lstfile:
@@ -96,13 +96,13 @@ for i,dire in enumerate(lstdir):
 				if subNum <0:
 					subNum = 0
 				perLine[1] = str(subNum)
-				li = " ".join(perLine) + "\n"
+				li = ",".join(perLine) + "\n"
 				fileWriteObj.write(li)
 			else:
 				continue
 		if len(filelst) > 1:
 			filelst[num-1][1] = str(int(lastTime) - int(filelst[num-1][1]))
-			li = " ".join(filelst[num-1]) + '\n'
+			li = ",".join(filelst[num-1]) + '\n'
 			fileWriteObj.write(li)
 
 	fileWriteObj.close()
