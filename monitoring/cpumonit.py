@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 #coding=utf-8
+
+# http://88fly.blog.163.com/blog/static/1226803902013134045575/
+
 #STATS = []
 import time
 import sys
