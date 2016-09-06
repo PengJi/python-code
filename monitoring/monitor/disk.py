@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-# http://88fly.blog.163.com/blog/static/1226803902013134045575/
-
+#!/usr/bin/env python
 def disk_stat():
     import os
     hd={}
