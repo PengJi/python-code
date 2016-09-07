@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import psutil
+import threading
 from colorama import Fore, Back, Style
 
 # monitoring CPU
@@ -23,7 +24,7 @@ def monitor_cpu():
 		cpuTotal = long(W[1])+long(W[2])+long(W[3])+long(W[4])+long(W[5])+long(W[6])+long(W[7])+long(W[8])+long(W[9])
 		cpuIdle = long(W[4])
 		cpuused=float(cpuTotal-cpuIdle)/cpuTotal
-		print '%.2f%%'%(cpuused*100)
+		print Fore.BLUE + '%.2f%%'%(cpuused*100)
 	
 
 # monitoring mem
@@ -53,7 +54,7 @@ def monitor_mem():
 			MemT = STATS[0]
 			MemU = STATS[1]
 			Used_Per = STATS[2]
-			print MemT ,'KB     ',MemU ,'KB       ',Used_Per  
+			print Fore.CYAN,MemT ,'KB     ',MemU ,'KB       ',Used_Per  
 	except KeyboardInterrupt, e:
 		print "\nmemmonit exited"
 
@@ -83,7 +84,7 @@ def monitor_IO():
 		disk_con['write_bytes'] = disk_cur['write_bytes'] - disk_start['write_bytes']
 		disk_con['read_time'] = disk_cur['read_time'] - disk_start['read_time']
 		disk_con['write_time'] = disk_cur['write_time'] - disk_start['write_time']
-		print disk_con['read_bytes'],",",disk_con['write_bytes'],',',disk_con['read_time'],',',disk_con['write_time']
+		print Fore.YELLOW,disk_con['read_bytes'],",",disk_con['write_bytes'],',',disk_con['read_time'],',',disk_con['write_time']
 	
 
 # monitoring net
@@ -118,13 +119,22 @@ def monitor_net():
 		TX_start = rxstat_start[1]
 		RX_RATE = round((RX_cur - RX_start)/1024,3)
 		TX_RATE = round((TX_cur - TX_start)/1024,3)
-		print RX_RATE ,'KB  ',TX_RATE ,'KB'
+		print Fore.MAGENTA,RX_RATE ,'KB  ',TX_RATE ,'KB'
 
 
 if __name__ == '__main__':
 	#monitor_cpu()
 	#monitor_mem()
 	#monitor_IO()
-	monitor_net()
+	#monitor_net()
+
+	thread_cpu = threading.Thread(target=monitor_cpu, args=())
+	thread_cpu.start()
+	thread_mem = threading.Thread(target=monitor_mem, args=())
+	thread_mem.start()
+	thread_IO = threading.Thread(target=monitor_IO, args=())
+	thread_IO.start()
+	thread_net = threading.Thread(target=monitor_net, args=())
+	thread_net.start()
 
 	print Style.RESET_ALL
