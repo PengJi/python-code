@@ -18,7 +18,12 @@ def cpuinfo():
 
 def monitor_cpu():
 	print Fore.BLUE + "CPU_per"
+	'''
+	if os.path.isfile('/tmp/monitor_cpu.txt'):
+		os.remove('/tmp/monitor_cpu.txt')
+	'''
 	cpuWriteObj = open('/tmp/monitor_cpu.txt',"a")
+	cpuWriteObj.write("CPU percent\n")
 	while True:
 		time.sleep(0.5)
 		W = cpuinfo()
@@ -50,6 +55,10 @@ def Memory():
 
 def monitor_mem():
 	print Fore.CYAN + "mem monitoring"
+	'''
+	if os.path.isfile('/tmp/monitor_mem.txt'):
+		os.remove('/tmp/monitor_mem.txt')
+	'''
 	memWriteObj = open('/tmp/monitor_mem.txt',"a")
 	title_mem = 'Memory_Total      Memory_Used        Used_Per' + "\n"
 	memWriteObj.write(title_mem)
@@ -90,6 +99,10 @@ def monitor_IO():
 	print Fore.YELLOW + "IO monitoring"
 	disk_start = disk_IO()
 	disk_con = {}
+	'''
+	if os.path.isfile('/tmp/monitor_IO.txt'):
+		os.remove('/tmp/monitor_IO.txt')
+	'''
 	ioWriteObj = open('/tmp/monitor_IO.txt',"a")
 	title_IO = "read_bytes,write_bytes,read_time,write_time" + "\n"
 	ioWriteObj.write(title_IO)
@@ -129,6 +142,10 @@ def net_stat():
 def monitor_net():
 	print Fore.MAGENTA + "net monitoring"
 	STATS_start = net_stat()
+	'''
+	if os.path.isfile('/tmp/monitor_net.txt'):
+		os.remove('/tmp/monitor_net.txt')
+	'''
 	netWriteObj = open('/tmp/monitor_net.txt',"a")
 	title_net = 'In   Out' + "\n"
 	netWriteObj.write(title_net)
