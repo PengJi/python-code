@@ -18,6 +18,7 @@ def cpuinfo():
 
 def monitor_cpu():
 	print Fore.BLUE + "CPU_per"
+	cpuWriteObj = open('/tmp/monitor_cpu.txt',"a")
 	while True:
 		time.sleep(0.5)
 		W = cpuinfo()
@@ -25,6 +26,10 @@ def monitor_cpu():
 		cpuIdle = long(W[4])
 		cpuused=float(cpuTotal-cpuIdle)/cpuTotal
 		print Fore.BLUE + '%.2f%%'%(cpuused*100)
+		str_cpu = '%.2f%%'%(cpuused*100) + "\n"
+		cpuWriteObj.write(str_cpu)
+		cpuWriteObj.flush()
+	cpuWriteObj.close()
 	
 
 # monitoring mem
@@ -45,18 +50,27 @@ def Memory():
 
 def monitor_mem():
 	print Fore.CYAN + "mem monitoring"
+	memWriteObj = open('/tmp/monitor_mem.txt',"a")
+	title_mem = 'Memory_Total      Memory_Used        Used_Per' + "\n"
+	memWriteObj.write(title_mem)
 	STATS = Memory()
 	try:
-		print 'Memory_Total      Memory_Used        Used_Per' 
+		print 'Memory_Total      Memory_Used        Used_Per' + "\n"
 		while True:
 			time.sleep(0.5)
 			Memory()
 			MemT = STATS[0]
 			MemU = STATS[1]
 			Used_Per = STATS[2]
-			print Fore.CYAN,MemT ,'KB     ',MemU ,'KB       ',Used_Per  
+			print Fore.CYAN,MemT ,'KB,',MemU ,'KB,',Used_Per
+			str_mem = str(MemT) + ',' + str(MemU)  + ','+ str(Used_Per) + "\n"
+			memWriteObj.write(str_mem)
+			memWriteObj.flush()
+
 	except KeyboardInterrupt, e:
 		print "\nmemmonit exited"
+	finally:
+		memWriteObj.close()
 
 
 # monitoring disk
@@ -76,6 +90,9 @@ def monitor_IO():
 	print Fore.YELLOW + "IO monitoring"
 	disk_start = disk_IO()
 	disk_con = {}
+	ioWriteObj = open('/tmp/monitor_IO.txt',"a")
+	title_IO = "read_bytes,write_bytes,read_time,write_time" + "\n"
+	ioWriteObj.write(title_IO)
 	print "read_bytes,write_bytes,read_time,write_time"
 	while True:
 		time.sleep(0.5)
@@ -85,6 +102,10 @@ def monitor_IO():
 		disk_con['read_time'] = disk_cur['read_time'] - disk_start['read_time']
 		disk_con['write_time'] = disk_cur['write_time'] - disk_start['write_time']
 		print Fore.YELLOW,disk_con['read_bytes'],",",disk_con['write_bytes'],',',disk_con['read_time'],',',disk_con['write_time']
+		str_io =  str(disk_con['read_bytes']) + ',' + str(disk_con['write_bytes']) + ',' +str(disk_con['read_time']) + ',' + str(disk_con['write_time']) + "\n"
+		ioWriteObj.write(str_io)
+		ioWriteObj.flush()
+	ioWriteObj.close()
 	
 
 # monitoring net
@@ -108,6 +129,9 @@ def net_stat():
 def monitor_net():
 	print Fore.MAGENTA + "net monitoring"
 	STATS_start = net_stat()
+	netWriteObj = open('/tmp/monitor_net.txt',"a")
+	title_net = 'In   Out' + "\n"
+	netWriteObj.write(title_net)
 	print 'In   Out'
 	while True:
 		time.sleep(0.5)
@@ -120,6 +144,10 @@ def monitor_net():
 		RX_RATE = round((RX_cur - RX_start)/1024,3)
 		TX_RATE = round((TX_cur - TX_start)/1024,3)
 		print Fore.MAGENTA,RX_RATE ,'KB  ',TX_RATE ,'KB'
+		str_net = str(RX_RATE) + ',' + str(TX_RATE) + ',' + "\n"
+		netWriteObj.write(str_net)
+		netWriteObj.flush()
+	netWriteObj.close()
 
 
 if __name__ == '__main__':
