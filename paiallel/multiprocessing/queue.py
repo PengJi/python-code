@@ -7,14 +7,14 @@
 from multiprocessing import Process, Queue
 import os, time, random
 
-# 写数据进程执行的代码:
+# 写数据进程
 def write(q):
     for value in ['A', 'B', 'C']:
         print 'Put %s to queue...' % value
         q.put(value)
         time.sleep(random.random())
 
-# 读数据进程执行的代码:
+# 读数据进程
 def read(q):
     while True:
         value = q.get(True)
