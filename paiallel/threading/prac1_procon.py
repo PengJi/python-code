@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-#主程序中，启动2个线程，一个生产者，两个消费者。
-#一个产品池队列，生产者如果池子少于10个就产生5个随机数。
-#消费者如果池子内有超过8个就消费3个
+
 import threading
 import Queue
 import random
 import time
 
+'''
+主程序中，启动2个线程，一个生产者，两个消费者。
+一个产品池队列，生产者如果池子少于10个就产生5个随机数。
+消费者如果池子内有超过8个就消费3个
+'''
 pool= Queue.Queue()   #空池子，用来存放生产者产生的随机数
 con = threading.Condition()
 

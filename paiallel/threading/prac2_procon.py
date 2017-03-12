@@ -5,8 +5,8 @@ from time import sleep
 from Queue import Queue
 from random import randint
 
-
 #个性化自己的线程类 
+
 class MyThread(threading.Thread):
     def __init__(self, func, args):
         threading.Thread.__init__(self)
