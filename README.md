@@ -1,2 +1,2 @@
-# python_prac
+# python practice
 python练习代码
