@@ -1,6 +1,11 @@
 from pyDOE import *
 from numpy import *
 
+'''
+拉丁超立方体采样
+https://pythonhosted.org/pyDOE/randomized.html#statistical-distribution-usage
+'''
+
 # MPL2
 def get_mpl2():
     origin_mpl_2 = lhs(2,10)
