@@ -2,6 +2,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy import signal
 
+# https://stackoverflow.com/questions/38526289/how-to-find-frequency-of-a-square-wave-using-fft
+
 t500 = np.linspace(0,5,500,endpoint=False)
 s1t500 = signal.square(2*np.pi*1.0*t500)
 
