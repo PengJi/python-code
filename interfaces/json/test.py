@@ -3,6 +3,9 @@
 import json as js
 import xlwt
 
+# http://blog.csdn.net/qq_23926575/article/details/76566209
+# http://blog.csdn.net/destinymf/article/details/78096678
+
 # 创建excel
 workbook = xlwt.Workbook(encoding='utf-8')
 worksheet = workbook.add_sheet('sheet1')
