@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 
 # http://www.jb51.net/article/132067.htm
 
@@ -17,7 +15,8 @@ lines = []
 for i in range(len(data)):
   # Small reduction of the X extents to get a cheap perspective effect
   xscale = 1 - i / 200.
-  line = xscale * X, i + G * data[i]
+  #line = xscale * X, i + G * data[i]
+  line = i + G * data[i]
   lines.append(line)
 
 print lines
