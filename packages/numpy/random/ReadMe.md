@@ -4,4 +4,4 @@ numpy.random模块，有四种功能：
 3. 分布：产生指定分布的数据，如高斯分布等
 4. 生成器：种随机数中字，根据同一种种子产生的随机数是相同的
 
-
+[Random sampling (numpy.random)](https://docs.scipy.org/doc/numpy/reference/routines.random.html)
