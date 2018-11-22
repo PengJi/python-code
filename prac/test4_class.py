@@ -1,27 +1,26 @@
-#ÀàµÄ¶¨Òå
+#ç±»çš„å®šä¹‰
 class a:
-    def __init__(self):#¹¹Ôìº¯Êı
-        self.m = 1#aÀàµÄ³ÉÔ±±äÁ¿
-    def add(self):#¶¨Òå³ÉÔ±º¯Êı
+    def __init__(self):#æ„é€ å‡½æ•°
+        self.m = 1#aç±»çš„æˆå‘˜å˜é‡
+    def add(self):#å®šä¹‰æˆå‘˜å‡½æ•°
         self.p=4
         print self.m+self.p
         
-        
-#ÀàµÄ¼Ì³Ğ
+#ç±»çš„ç»§æ‰¿
 class b(a):
     def __init__(self):
         a.__init__(self)
         self.n = 2
         self.tt()
     def sum(self,a=1,b=2):
-        """°ïÖúÎÄµµĞÅÏ¢""" #ÎÄµµ×Ö·û´®µÄÊ¹ÓÃ
+        """å¸®åŠ©æ–‡æ¡£ä¿¡æ¯""" #æ–‡æ¡£å­—ç¬¦ä¸²çš„ä½¿ç”¨
         print self.m+self.n
         self.__dd()
     def tt(self):
         self.m = 6
-    def  __dd(slef):# Ë½ÓĞº¯Êı
+    def  __dd(slef):# ç§æœ‰å‡½æ•°
         print "dd"
-    def __ee__(self): #×¨ÓĞº¯Êı
+    def __ee__(self): #ä¸“æœ‰å‡½æ•°
         print "ee"
         if 1==2:
             pass
