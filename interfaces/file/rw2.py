@@ -36,7 +36,6 @@ for i,dire in enumerate(lstdir):
 
 		#jump second line
 		fileLineText = fileReadObj.readline()
-		fileLineText = fileReadObj.readline()
 
 		# the other lines
 		filelst = []
