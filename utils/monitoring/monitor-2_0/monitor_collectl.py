@@ -7,7 +7,7 @@ import paramiko
 import threading
 from colorama import Fore, Back, Style
 
-# connect remote hosts and execute commands
+# connect ssh hosts and execute commands
 def ssh2(ip,username,passwd,cmd):
 	try:
 		ssh = paramiko.SSHClient()

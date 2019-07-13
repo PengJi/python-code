@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import ssh
 
 # http://blog.sina.com.cn/s/blog_53d874320102vdvu.html
