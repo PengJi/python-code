@@ -1,0 +1,1 @@
+[Remote procedure call (RPC)](https://www.rabbitmq.com/tutorials/tutorial-six-python.html)
