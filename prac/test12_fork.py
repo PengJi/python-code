@@ -14,8 +14,8 @@ if __name__ == '__main__':
 
 
 #多进程
-fork 派生多进程、多线程
-wait 父进程控制子进程
-waitpid 父进程控制子进程
-pipe singal 多进程之间通信
-守护进程
+# fork 派生多进程、多线程
+# wait 父进程控制子进程
+# waitpid 父进程控制子进程
+# pipe singal 多进程之间通信
+# 守护进程
