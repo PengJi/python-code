@@ -8,6 +8,7 @@ import time
 import functools
 import signal
 
+
 def timeout(seconds, error_message='function call time out'):
     def decorated(func):
         def _handle_timeout(signum, frame):
@@ -25,6 +26,7 @@ def timeout(seconds, error_message='function call time out'):
         return functools.wraps(func)(wrapper)
 
     return decorated
+
 
 @timeout(1, 'function slow; aborted')
 def slow_function():

@@ -44,11 +44,13 @@ def counter(func):
     wrapper.count = 0
     return wrapper
 
+
 @counter
 @benchmark
 @logging
 def reverse_string(string):
     return str(reversed(string))
+
 
 if __name__ == '__main__':
     reverse_string("abc")

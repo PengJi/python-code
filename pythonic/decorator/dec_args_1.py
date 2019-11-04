@@ -6,6 +6,7 @@
 
 import functools
 
+
 def is_admin(admin='admin'):
     def decorated(f):
         @functools.wraps(f)
@@ -16,10 +17,12 @@ def is_admin(admin='admin'):
         return wrapper
     return decorated
 
+
 @is_admin(admin='root')
 def barfoo(username='someone'):
     """ do crazy stuff """
     print '{0} get food'.format(username)
+
 
 if __name__ == '__main__':
     barfoo(username='root')
