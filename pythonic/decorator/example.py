@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 def check_is_admin(f):
     """
     把参数检查和业务逻辑完全分离开来，让代码先的清晰

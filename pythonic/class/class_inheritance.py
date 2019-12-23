@@ -7,7 +7,7 @@ class a:
 
     def add(self):  # 定义成员函数
         self.p=4
-        print self.m+self.p
+        print(self.m+self.p)
         
 # 类的继承
 class b(a):
@@ -18,23 +18,23 @@ class b(a):
 
     def sum(self, a=1, b=2):
         """帮助文档信息"""   # 文档字符串的使用
-        print self.m+self.n
+        print(self.m+self.n)
         self.__dd()
 
     def tt(self):
         self.m = 6
 
     def __dd(self):  # 私有函数
-        print "dd"
+        print("dd")
 
     def __ee__(self):  # 专有函数
-        print "ee"
+        print("ee")
         if 1 == 2:
             pass
         try:
             fun()
-        except Exception, e:
-            print e.message
+        except Exceptiona as e:
+            print(e.message)
 
     def funx(self):
         pass
