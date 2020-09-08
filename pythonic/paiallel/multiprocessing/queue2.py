@@ -1,4 +1,4 @@
-#coding:utf-8
+# -*- coding: utf-8 -*-
 
 import os
 import multiprocessing
@@ -28,7 +28,7 @@ record1 = []   # store input processes
 record2 = []   # store output processes
 lock  = multiprocessing.Lock()    # To prevent messy print
 queue = multiprocessing.Queue(3)
- 
+
 # input processes
 for i in range(10):
     process = multiprocessing.Process(target=inputQ,args=(queue,))
