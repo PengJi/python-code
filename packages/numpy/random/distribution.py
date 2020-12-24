@@ -150,15 +150,17 @@ scale: float or array_like of floats
 此概率分布的标准差（对应于宽度，scale越大越矮胖，scale越小，越瘦高
 size: int or tuple of ints, optional
 '''
+
 def normal():
   mu, sigma = 0, 0.1
   s = np.random.normal(mu, sigma, 10)
-  print s
+  print(s)
+
 
 def test():
   mu, sigma = 22.6, 1.5
   s = np.random.normal(mu, sigma, 10)
-  print s
+  print(s)
 
 
 if __name__ == "__main__":
