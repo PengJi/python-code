@@ -31,15 +31,17 @@ def guide_get_one_feature(stub, point):
 
 
 def guide_get_feature(stub):
-    guide_get_one_feature(
-        stub, route_guide_pb2.Point(latitude=409146138, longitude=-746188906))
+    # 客户端请求一个地点是否在数据源中
+    guide_get_one_feature(stub, route_guide_pb2.Point(latitude=409146138, longitude=-746188906))
     guide_get_one_feature(stub, route_guide_pb2.Point(latitude=0, longitude=0))
 
 
 def guide_list_features(stub):
+    # 客户端指定一个矩形范围(矩形的对角点坐标), 服务器返回这个范围内的地点信息
     rectangle = route_guide_pb2.Rectangle(
         lo=route_guide_pb2.Point(latitude=400000000, longitude=-750000000),
-        hi=route_guide_pb2.Point(latitude=420000000, longitude=-730000000))
+        hi=route_guide_pb2.Point(latitude=420000000, longitude=-730000000)
+    )
     print("Looking for features between 40, -75 and 42, -73")
 
     features = stub.ListFeature(rectangle)
@@ -49,6 +51,7 @@ def guide_list_features(stub):
 
 
 def generate_route(feature_list):
+    # 客户端给服务器发送多个地点信息, 服务器返回汇总信息(summary)
     for _ in range(0, 10):
         random_feature = feature_list[random.randint(0, len(feature_list) - 1)]
         print("Visiting point %s" % random_feature.location)
@@ -56,6 +59,7 @@ def generate_route(feature_list):
 
 
 def guide_record_route(stub):
+    # 客户端给服务器发送多个地点信息, 服务器返回汇总信息(summary)
     feature_list = route_guide_resources.read_route_guide_database()
 
     route_iterator = generate_route(feature_list)
@@ -80,10 +84,10 @@ def generate_messages():
 
 
 def guide_route_chat(stub):
+    # 客户端和服务器使用地点信息 聊天(chat)
     responses = stub.RouteChat(generate_messages())
     for response in responses:
-        print("Received message %s at %s" %
-              (response.message, response.location))
+        print("Received message %s at %s" % (response.message, response.location))
 
 
 def run():
