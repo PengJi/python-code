@@ -38,8 +38,8 @@ channel.send('ssh '+username+'@'+hostname+'\n')  # 执行 ssh 登录业务主机
 while not buff.endswith(passinfo):  # ssh登录的提示信息判断，输出串尾含有"\'s password:"时，退出while循环
     try:
         resp = channel.recv(9999)
-    except Exception, e:
-        print 'Error info:%s connection time.' % (str(e))
+    except Exception as e:
+        printO('Error info:%s connection time.' % (str(e)))
         channel.close()
         ssh.close()
         sys.exit()
@@ -54,7 +54,7 @@ buff = ''
 while not buff.endswith('# '):  # 输出串尾为"# "是说明校验通过并退出while循环
     resp = channel.recv(9999)
     if not resp.find(passinfo) == -1:  # 输出串尾含有"\'s password: "时说明密码不正确，要求重新输入
-        print 'Error info: Authentication failed.'
+        print('Error info: Authentication failed.')
         channel.close()  # 关闭连接对象后退出
         ssh.close()
         sys.exit()
@@ -66,9 +66,9 @@ try:
     while buff.find('# ') == -1:
         resp = channel.recv(9999)
         buff += resp
-except Exception, e:
-    print "error info:"+str(e)
+except Exception as e:
+    print("error info:"+str(e))
 
-print buff  # 打印输出串
+print(buff ) # 打印输出串
 channel.close()
 ssh.close()

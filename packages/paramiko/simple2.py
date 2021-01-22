@@ -22,5 +22,5 @@ key = paramiko.RSAKey.from_private_key_file(privatekey)  # 创建私钥对象 ke
 
 ssh.connect(hostname=hostname, username=username, pkey=key)
 stdin, stdout, stderr = ssh.exec_command('free -m')
-print stdout.read()
+print(stdout.read())
 ssh.close()
